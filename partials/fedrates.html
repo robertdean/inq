@@ -1,0 +1,26 @@
+				<table  
+					class="table table-bordered table-striped table-hover table-condensed" >
+					<caption >
+					<h4>
+						<span class="pull-left">Fed Rates</span>
+						<small class="pull-right"> {{ fedRates[0].DateGathered  | date:' M/d/yyyy h:mm:ss a' | fromNow  }} </small>
+					</h4>
+					<thead>
+						<tr >
+							<th>Rate</th>			
+							<th><span class="pull-right">Current</span></th>			
+							<th>1 Year Ago</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in fedRates | orderBy : 'Name' ">			
+							<td >
+								<span ng-bind="item.Name"></span>				
+							</td>						
+							<td  > 				
+								<span class="pull-right" ng-bind="item.Current "></span> 
+							</td>			
+							<td ><span ng-class="{ 'pull-right':true, 'text-danger': item['1 Year Prior'] < item['Current'], 'text-success': item['1 Year Prior'] > item['Current'] }" ng-bind="item['1 Year Prior']"></span></td>
+						</tr>
+					</tbody>
+				</table>

@@ -1,0 +1,57 @@
+<table  class="table table-bordered table-striped table-hover table-condensed" ng-controller="CommoditiesCtrl">
+	<caption >
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4"><h4 >Commodities</h4></div>
+				<div class="col-sm-8"><input type="text" class="form-control input-sm search" ng-model="query" placeholder="Search" ng-change="search()" ></div>	
+			</div>
+		</div>
+	</caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Current</th>
+			<th>Change</th>
+		</tr>
+	</thead>
+	<tbody ng-show="pagedItems[currentPage].length > 0">
+		<tr ng-repeat="item in pagedItems[currentPage]">
+				<td  data-title=" 'Name' "  sortable="name">
+					<span>{{item.name}}</span>
+					<small class="muted pull-right" ng-hide="item.date=='N/A'">  {{ item.date }} </small>
+				</td>			
+			
+				<td  data-title=" 'Current' "  > 				
+					<span class="pull-right"> {{ item.unit.split('/')[1]  }} </span> 					
+					<span class="pull-right"> {{ item.price | number: 2 }} </span> 				
+					<span class="pull-left" > {{ currencySymbol[ item.unit.split('/')[0] ] }}</span> 
+				</td>			
+				<td data-title="'Change'"  sortable="absChange">
+					<direction value="item.change"  />							
+				</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="8" >
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-9">
+								<ul class="pagination pagination-sm" ng-show="pagedItems[currentPage].length > 0">
+									<li ng-class="{disabled: currentPage == 0}"> <a href ng-click="prevPage()">« Prev</a></li>
+									<li ng-repeat="n in range(pagedItems.length)" ng-class="{active: n == currentPage}" ng-click="setPage()"> <a href ng-bind="n + 1">1</a></li>
+									<li ng-class="{disabled: currentPage == pagedItems.length - 1}"> <a href ng-click="nextPage()">Next »</a></li>
+								</ul>								
+						</div>
+						<div class="col-sm-3"  >
+							<p class="text-muted text-center">							
+								 {{ pagedItems[currentPage].length }}  of {{ items.length }} records 
+								<br> Data from  {{ filteredItems[0].timeStamp  | date:' M/d/yyyy h:mm:ss a' | fromNow  }} 
+							</p>															
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</tfoot>	
+</table>	

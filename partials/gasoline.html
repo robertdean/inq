@@ -1,0 +1,32 @@
+				<table class="table table-bordered table-striped table-hover table-condensed" >
+					<caption >
+						<h4>
+							<span class="pull-left">Gasoline Prices</span>
+							<small class="pull-right"> {{ gasolinePrices[0].timeStamp  | date:' M/d/yyyy h:mm:ss a' | fromNow  }} </small>
+						</h4>
+					</caption>	
+					<thead>
+						<tr>
+							<th>Region</th>
+							<th>Current</th>
+							<th>Last Week</th>
+							<th>Last Year</th>
+						</tr>
+					</thead>
+				<tbody>
+					<tr ng-repeat="item in gasolinePrices">			
+						<td >
+							<span ng-bind="item.region"></span>				
+						</td>						
+						<td > 				
+							<span class="pull-right" ng-bind="item.current" ></span> 
+						</td>			
+						<td >
+							<span class="pull-right" ng-bind="item.lastWeek" ></span> 
+						</td>
+						<td >
+							<span class="pull-right" ng-bind="item.lastYear"></span> 
+						</td>
+					</tr>
+				</tbody>
+			</table>					

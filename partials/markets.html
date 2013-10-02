@@ -1,0 +1,39 @@
+﻿<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<select 
+				chosen 
+				multiple 
+				data-placeholder="Choose a Country" 
+				allow-single-deselect="true"
+				no-results-text="'Could not find:'"
+				class="chzn-select col-md-6 " 				
+				ng-model="countryInfoService.selectedCountries" 
+				ng-options="country.CountryName for country in countryInfoService.countryList">
+				 <option value=""></option>
+			</select>		
+			<ul>
+				<li ng-repeat="country in countryInfoService.selectedCountries">{{ country.CountryName }} {{ country.CurrencyCode }} </li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6" ng-include=" 'partials/metals.html' "></div>
+		<div class="col-md-6" ng-include=" 'partials/currencies2.html' "></div>	
+	</div>
+	<div class="row">
+		<div class="col-md-12" ng-include=" 'partials/indicators.html' "></div>
+	</div>		
+	<div class="row">
+		<div class="col-md-12" ng-include=" 'partials/indeces.html' "></div>
+	</div>
+	<div class="row">		
+		<div class="col-md-12" ng-include=" 'partials/gasoline.html' "></div>			
+	</div>
+	<div class="row">
+		<div class="col-md-4" ng-include=" 'partials/commodities.html' "></div>					
+		<div class="col-md-4" ng-include=" 'partials/fedrates.html' "></div>					
+		<div class="col-md-4" ng-include=" 'partials/consumer-rates.html' "></div>									
+	</div>
+</div>
+

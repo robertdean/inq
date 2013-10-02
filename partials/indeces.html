@@ -1,0 +1,63 @@
+<table  class="table table-bordered table-striped table-hover table-condensed" ng-controller="IndexCtrl">
+	<caption >
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4"><h4 >Markets</h4></div>
+				<div class="col-sm-8"><input type="text" class="form-control input-sm search" ng-model="query" placeholder="Search" ng-change="search()" ></div>						
+			</div>
+		</div>
+	</caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Date</th>							
+			<th>Range (52 wk v. Day)</th>
+			<th>Value</th>
+			<th>Change</th>
+		</tr>
+	</thead>
+	<tbody ng-show="pagedItems[currentPage].length > 0">
+		<tr ng-repeat="item in pagedItems[currentPage]">
+			<td >
+				{{item.name}} 								
+			</td>								
+			<td  >
+				{{ item.date }} 
+			</td>			
+			<td >								
+				<sparkline type="box" data="{{ item.boxPlotData }} " ></sparkline>						 
+			</td>
+			<td >
+				{{ item.value }} 
+			</td>
+			<td >
+				<direction value="item.change"  />							
+			</td>			
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="8" >
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-9">
+								<ul class="pagination pagination-sm" ng-show="pagedItems[currentPage].length > 0">
+									<li ng-class="{disabled: currentPage == 0}"> <a href ng-click="prevPage()">« Prev</a></li>
+									<li ng-repeat="n in range(pagedItems.length)" ng-class="{active: n == currentPage}" ng-click="setPage()"> <a href ng-bind="n + 1">1</a></li>
+									<li ng-class="{disabled: currentPage == pagedItems.length - 1}"> <a href ng-click="nextPage()">Next »</a></li>
+								</ul>								
+						</div>
+						<div class="col-sm-3"  >
+							<p class="text-muted text-center">							
+								 {{ pagedItems[currentPage].length }}  of {{ items.length }} records 
+								<br> Data from  {{ filteredItems[0].timeStamp  | date:' M/d/yyyy h:mm:ss a' | fromNow  }} 
+							</p>															
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+			
+		

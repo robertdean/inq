@@ -1,0 +1,30 @@
+	
+<table class="table table-bordered table-striped table-hover table-condensed" >
+	<caption >
+		<h4>
+			<span class="pull-left">Metals</span>
+			<small class="pull-right"> {{ indexes[0].timeStamp  | date:' M/d/yyyy h:mm:ss a' | fromNow  }} </small>
+		</h4>
+	</caption>
+	<thead>
+		<tr>
+			<th>Metal</th>
+			<th>Current</th>
+			<th>Change</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in metals">			
+			<td  data-title="'Name'"  sortable="name" style="width:50%" >	
+				{{ item.name }}
+			</td>								
+			<td  data-title="Current"  sortable="current" > 								
+				<span class="pull-left">{{ item.currencySymbol }} </span>
+				<span class="pull-right">{{ item.current | number:2 }}</span>
+			</td>			
+			<td  data-title="Change" sortable="absChange">												
+				<direction value="item.change"  />
+			</td>			
+		</tr>
+	</tbody>
+</table>		
