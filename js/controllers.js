@@ -1,8 +1,8 @@
-﻿'use strict';
+'use strict';
 /* Controllers */
 angular.module('app.controllers', [])
 	.controller('CommoditiesCtrl',['$scope', '$q', '$filter', 'MarketService', 'CountryInfoService', 
-		function($scope, $q, $filter, MarketService,CountryInfoService){
+		function($scope, $q, $filter, MarketService, CountryInfoService){
 			$scope.countryInfoService = CountryInfoService;
 			$scope.sortingOrder  = 'name';
 			$scope.pagedItems = [];
